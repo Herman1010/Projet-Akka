@@ -33,6 +33,22 @@ object Routes extends JsonFormats {
           }
         }
       }
+      path("api"/"portefeuilles"){
+            get {
+                //complete(Message(UserDAO.getAll()))
+                onSuccess(PortefeuilleDAO.getAll()){
+                    portefeuille => complete(portefeuille.toJson)
+                }
+            }
+        }
+      path("api"/"actifs"){
+            get {
+                //complete(Message(UserDAO.getAll()))
+                onSuccess(ActifDAO.getAll()){
+                    actif => complete(actif.toJson)
+                }
+            }
+        }
 
     
 }
