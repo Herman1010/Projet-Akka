@@ -18,7 +18,21 @@ object Routes extends JsonFormats {
                     utilisateur => complete(utilisateur.toJson)
                 }
             }
+        } ~
+      path("api"/ "notif"){
+        get {
+          onSuccess(NotifDAO.getAll()){
+            notifications => complete(notifications.toJson)
+          }
         }
+      } ~
+      path("api" / "ActiveCourses"){
+        get {
+          onSuccess(ActiveCoursesDAO.getAll()){
+            activeCourses => complete(activeCourses.toJson)
+          }
+        }
+      }
 
     
 }
