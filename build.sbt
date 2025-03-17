@@ -8,7 +8,7 @@ val AkkaHttpVersion = "10.5.2" // Ajout de la variable manquante
 
 lazy val root = (project in file("."))
   .settings(
-    name := "Akka1",
+    name := "Projet-Akka",
     version := "0.1",
     libraryDependencies ++= Seq(
       "com.typesafe.akka" %% "akka-actor-typed" % AkkaVersion,
