@@ -32,14 +32,23 @@ object Routes extends JsonFormats {
             activeCourses => complete(activeCourses.toJson)
           }
         }
-      }
+      }~
       path("api"/"portefeuilles"){
             get {
                 onSuccess(PortefeuilleDAO.getAll()){
                     portefeuille => complete(portefeuille.toJson)
                 }
             }
-        }
+        }~
+   path("api" / "portefeuilles" / Segment) { userId =>
+  get {
+    onSuccess(PortefeuilleDAO.getByUtilisateurrId(userId)) { portefeuille =>
+      complete(portefeuille.toJson)
+    }
+  }
+}
+
+        }~
       path("api"/"actifs"){
             get {
                 onSuccess(ActifDAO.getAll()){
