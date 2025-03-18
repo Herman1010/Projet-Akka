@@ -42,5 +42,6 @@
     <orderEntry type="library" name="sbt: com.zaxxer:HikariCP:4.0.3:jar" level="project" />
     <orderEntry type="library" name="sbt: org.checkerframework:checker-qual:3.5.0:jar" level="project" />
     <orderEntry type="library" name="sbt: org.scala-lang.modules:scala-java8-compat_2.13:1.0.0:jar" level="project" />
+    <orderEntry type="library" name="scala-sdk-2.13.16" level="application" />
   </component>
 </module>
