@@ -1,0 +1,44 @@
+label {
+    display: flex;
+    align-items: center; /* Alignement vertical des éléments */
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+label::after {
+    content: ":"; /* Ajoutez un deux-points après chaque étiquette */
+    margin-right: 5px; /* Ajoute une marge entre l'étiquette et le champ de saisie */
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.custom-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 5em;
+}
+
+.custom-button:hover {
+    background-color: #0056b3;
+}
+.container {
+    margin-top: 3em;
+    width: 600px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    z-index: 2;
+}

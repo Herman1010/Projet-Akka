@@ -1,0 +1,113 @@
+.step-container {
+    
+    width: 30%;
+    height: 20em;
+    text-align: center;
+    
+    
+    width: 600px;
+    padding: 0px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    z-index: 2;
+
+    margin: 0 auto;
+
+
+    display: flex; /* Utilisation de flexbox */
+  flex-direction: column; /* Empile les éléments les uns sur les autres */
+  justify-content: space-between; /* Les éléments s'étendent pour occuper tout l'espace vertical */
+  align-items: stretch; /* Les éléments s'étendent pour occuper tout l'espace horizontal */
+  
+  }
+  
+  .step {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #ccc;
+    display: inline-block;
+    text-align: center;
+    line-height: 30px;
+    margin-right: 10px;
+  }
+  
+  .step.active {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .progress-bar {
+    margin-bottom: 20px;
+    z-index: 2;
+  }
+  
+  .btn-primary {
+    display: inline-block;
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 2;
+    }
+    .btn-primary:hover {
+    background-color: #0056b3;
+    }
+
+    .btn-sucess {
+      display: inline-block;
+      text-decoration: none;
+      padding: 10px 20px;
+      background-color: #02a52b;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 2;
+      }
+      .btn-sucess:hover {
+      background-color: #8af74b;
+      }
+
+      /* Style de base */
+select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: #fff;
+  color: #333;
+  appearance: none; /* Masque le style par défaut du navigateur */
+}
+
+/* Style au survol */
+select:hover {
+  border-color: #999;
+}
+
+/* Style lorsque l'élément est activé (focus) */
+select:focus {
+  outline: none; /* Supprime le contour par défaut */
+  border-color: #66afe9; /* Couleur de la bordure lorsqu'il est activé */
+}
+
+/* Style pour les options dans le menu déroulant */
+select option {
+  background-color: #fff; /* Couleur de fond */
+  color: #333; /* Couleur du texte */
+}
+
+/* Style pour les options au survol */
+select option:hover {
+  background-color: #f0f0f0; /* Couleur de fond au survol */
+}
+
+/* Style pour l'option sélectionnée */
+select option:checked {
+  background-color: #66afe9; /* Couleur de fond de l'option sélectionnée */
+  color: #fff; /* Couleur du texte de l'option sélectionnée */
+}
