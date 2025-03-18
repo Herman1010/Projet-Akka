@@ -1,60 +1,67 @@
-/*import slick.jdbc.PostgresProfile.api._
-import scala.concurrent.{Future, ExecutionContext}
+import slick.jdbc.PostgresProfile.api._
+import java.time.LocalDate
 
-// Modle de l'entité Position
-case class Position(
-    id: Option[Int] = None,
-    portefeuilleId: Int,
-    actifId: Int,
-    quantite: BigDecimal,
-    prixAchat: BigDecimal,
-    dateAchat: Option[String] = None
-)
+import scala.concurrent.Future
+import scala.concurrent.ExecutionContext.Implicits.global
 
-// Mapping Slick pour la table Position
-class PositionTable(tag: Tag) extends Table[Position](tag, "Position") {
+
+
+
+  case class Position(id: Int, portefeuille_id: Int, actif_id: Int,quantite: Double ,prix_achat:Double, date_achat: LocalDate)
+  class PositionTable(tag: Tag) extends Table[Position](tag, "positions") {
   def id = column[Int]("id", O.PrimaryKey, O.AutoInc)
-  def portefeuilleId = column[Int]("portefeuille_id", O.NotNull)
-  def actifId = column[Int]("actif_id", O.NotNull)
-  def quantite = column[BigDecimal]("quantite", O.NotNull)
-  def prixAchat = column[BigDecimal]("prix_achat", O.NotNull)
-  def dateAchat = column[Option[String]]("date_achat", O.Default(None))
-
-  // Clés étrangères vers Portefeuille et Actif
-  def portefeuille = foreignKey("fk_position_portefeuille", portefeuilleId, TableQuery[PortefeuilleTable])(_.id, onDelete = ForeignKeyAction.Cascade)
-  def actif = foreignKey("fk_position_actif", actifId, TableQuery[ActifTable])(_.id, onDelete = ForeignKeyAction.Cascade)
-
-  def * = (id.?, portefeuilleId, actifId, quantite, prixAchat, dateAchat) <> (Position.tupled, Position.unapply)
+  def portefeuille_id = column[Int]("portefeuille_id")
+  def actif_id = column[Int]("actif_id")
+  def quantite = column[Double]("quantite")
+  def prix_achat = column[Double]("prix_achat")
+  def date_achat =column[LocalDate]("date_achat")
+  def * = (id, portefeuille_id, actif_id, quantite, prix_achat, date_achat) <> (Position.tupled, Position.unapply)
 }
 
-// DAO pour gérer les opérations sur la table Position
-class PositionDAO(db: Database)(implicit ec: ExecutionContext) {
+
+object PositionDAO {
   val positions = TableQuery[PositionTable]
+  val db = DatabaseConfig.db
 
-  // Insérer une position
-  def insert(position: Position): Future[Int] = {
-    db.run(positions += position)
+  
+  def addPosition(position: Position): Future[Int] = {
+    val insertAction = positions += position
+    db.run(insertAction)
   }
 
-  // Récupérer une position par son ID
-  def findById(id: Int): Future[Option[Position]] = {
-    db.run(positions.filter(_.id === id).result.headOption)
+  
+  def getPositionsByPortfolio(portefeuille_id: Int): Future[Seq[Position]] = {
+    val query = positions.filter(_.portefeuille_id === portefeuille_id).result
+    db.run(query)
   }
 
-  // Récupérer toutes les positions d'un portefeuille donné
-  def findByPortefeuille(portefeuilleId: Int): Future[Seq[Position]] = {
-    db.run(positions.filter(_.portefeuilleId === portefeuilleId).result)
+  
+
+  // Récupérer toutes les positions d'un actif
+  def getPositionsByAsset(actif_id: Int): Future[Seq[Position]] = {
+    val query = positions.filter(_.actif_id === actif_id).result
+    db.run(query)
   }
 
-  // Mettre à jour une position
-  def update(id: Int, position: Position): Future[Int] = {
-    db.run(positions.filter(_.id === id).update(position.copy(id = Some(id))))
+
+  def getPositionById(positionId: Int): Future[Option[Position]] = {
+    val query = positions.filter(_.id === positionId).result.headOption
+    db.run(query)
   }
 
 
-  // Supprimer une position
-  def delete(id: Int): Future[Int] = {
-    db.run(positions.filter(_.id === id).delete)
+  def removePosition(positionId: Int): Future[Int] = {
+    val deleteAction = positions.filter(_.id === positionId).delete
+    db.run(deleteAction)
+  }
+
+  
+ 
+  // Modifier une position existante
+  def updatePosition(id: Int, quantite: Double, prix_achat: Double, date_achat: LocalDate): Future[Int] = {
+    val updateAction = positions.filter(_.id === id)
+      .map(p => (p.quantite, p.prix_achat, p.date_achat))
+      .update((quantite, prix_achat, date_achat))
+    db.run(updateAction) 
   }
 }
-*/
