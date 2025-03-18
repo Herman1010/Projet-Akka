@@ -28,7 +28,7 @@ object Main extends App {
   // Démarrage du serveur HTTP
   val bindingFuture: Future[Http.ServerBinding] = Http().newServerAt("localhost", 8080).bind(route)
 
-  /*val newUser = Utilisateur(4, "Herman", "herman@example5.com", "1234")
+  val newUser = Utilisateur(5, "Herman", "herman@aaaa.com", "1234")
 
     val insertResult = UserDAO.insert(newUser)
     Await.result(insertResult, Duration.Inf)
@@ -38,7 +38,26 @@ object Main extends App {
 
   val insertResult2 = NotifDAO.insert(newNotif)
   Await.result(insertResult2, Duration.Inf)
-  println("Notif insere avec succes !")*/
+  println("Notif insere avec succes !")
+  val portefeuille = Portefeuille(None, 5,"portefeuille1","EUR",1000)
+  // Insert portfolio
+  val ajoutResult = PortefeuilleDAO.insert(portefeuille)
+  val PortefeuilleId = Await.result(ajoutResult, Duration.Inf)
+  println(s"portefeuille ajouté avec ID: $PortefeuilleId")
+
+  /* Retrieve the portfolio */
+  val fetchedActif = Await.result(PortefeuilleDAO.getById(PortefeuilleId), Duration.Inf)
+  println(s"portefeuille récupéré: $fetchedActif")
+
+  // Delete the portfolio
+  val suppressionResult = Await.result(PortefeuilleDAO.delete(PortefeuilleId), Duration.Inf)
+  println(suppressionResult)
+
+
+  //val newActiveCourse = ActiveCourses(1,1,10.57,2.0)
+
+  //val insertResult3 = ActiveCoursesDAO.insert(newActiveCourse)
+  //Await.result(insertResult3, Duration.Inf)
 
   val newTransaction = Transaction(4, 2, 3, TypeTransaction.Achat, 12, 12, LocalDate.of(2024, 5, 10))
 
