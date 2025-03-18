@@ -4,3 +4,4 @@ target/
 src/main/resources/application.conf
 .idea/
 .vscode/
+src/main/ressources/application.conf/
