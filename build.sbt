@@ -6,6 +6,11 @@ ThisBuild / organizationName := "example"
 val AkkaVersion = "2.8.0"
 val AkkaHttpVersion = "10.5.2" // Ajout de la variable manquante
 
+resolvers += "JCenter" at "https://jcenter.bintray.com/"
+resolvers += "Sonatype OSS Releases" at "https://oss.sonatype.org/content/repositories/releases/"
+
+
+
 lazy val root = (project in file("."))
   .settings(
     name := "Akka1",
@@ -22,6 +27,12 @@ lazy val root = (project in file("."))
       "org.slf4j" % "slf4j-simple" % "1.7.36", // Correction de `%%` en `%`
       "com.typesafe.slick" %% "slick" % "3.4.1",
       "com.typesafe.slick" %% "slick-hikaricp" % "3.4.1",
-      "org.postgresql" % "postgresql" % "42.5.0"
+      "org.postgresql" % "postgresql" % "42.5.0",
+      "com.softwaremill.sttp.client3" %% "core" % "3.8.3",
+      "com.softwaremill.sttp.client3" %% "circe" % "3.8.3",
+      "io.circe" %% "circe-parser" % "0.14.1",
+      "io.circe" %% "circe-core" % "0.14.1",
+      "io.circe" %% "circe-generic" % "0.14.1",
+      "io.circe" %% "circe-parser" % "0.14.1"
     )
   )
