@@ -21,6 +21,7 @@ trait JsonFormats extends SprayJsonSupport with DefaultJsonProtocol {
   implicit val notifFormat = jsonFormat5(Notifications)
   implicit val ActiveCourseFormat = jsonFormat5(ActiveCourses)
   implicit val ActifFormat: RootJsonFormat[Actif] = jsonFormat6(Actif)
+  implicit val PortefeuilleFormat: RootJsonFormat[Portefeuille] = jsonFormat5(Portefeuille)
 
 
 }

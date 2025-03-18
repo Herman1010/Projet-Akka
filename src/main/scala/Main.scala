@@ -55,7 +55,7 @@ object Main extends App {
   println(suppressionResult)
 
   //val newActiveCourse = ActiveCourses(1,1,10.57,2.0)
-  println("Notif insere avec succes !")*/
+  println("Notif insere avec succes !")
 
   val newTransaction = Transaction(4, 2, 3, TypeTransaction.Achat, 12, 12, LocalDate.of(2024, 5, 10))
 
