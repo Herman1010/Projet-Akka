@@ -1,5 +1,6 @@
 import slick.jdbc.PostgresProfile.api._
 import java.time.LocalDate
+
 import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
 
@@ -7,7 +8,7 @@ import scala.concurrent.ExecutionContext.Implicits.global
 
 
   case class Position(id: Int, portefeuille_id: Int, actif_id: Int,quantite: Double ,prix_achat:Double, date_achat: LocalDate)
-  class Positions(tag: Tag) extends Table[Position](tag, "positions") {
+  class PositionTable(tag: Tag) extends Table[Position](tag, "positions") {
   def id = column[Int]("id", O.PrimaryKey, O.AutoInc)
   def portefeuille_id = column[Int]("portefeuille_id")
   def actif_id = column[Int]("actif_id")
@@ -17,12 +18,9 @@ import scala.concurrent.ExecutionContext.Implicits.global
   def * = (id, portefeuille_id, actif_id, quantite, prix_achat, date_achat) <> (Position.tupled, Position.unapply)
 }
 
-object Positions {
-  val query = TableQuery[Positions]
-}
 
 object PositionDAO {
-  val positions = TableQuery[Positions]
+  val positions = TableQuery[PositionTable]
   val db = DatabaseConfig.db
 
   
@@ -38,8 +36,10 @@ object PositionDAO {
   }
 
   
-  def getPositionsByAsset(assetId: Int): Future[Seq[Position]] = {
-    val query = positions.filter(_.actif_id === assetId).result
+
+  // Récupérer toutes les positions d'un actif
+  def getPositionsByAsset(actif_id: Int): Future[Seq[Position]] = {
+    val query = positions.filter(_.actif_id === actif_id).result
     db.run(query)
   }
 
@@ -56,10 +56,12 @@ object PositionDAO {
   }
 
   
-  def updatePosition(id: Int, quantity: Double, purchasePrice: Double, purchaseDate: LocalDate): Future[Int] = {
+ 
+  // Modifier une position existante
+  def updatePosition(id: Int, quantite: Double, prix_achat: Double, date_achat: LocalDate): Future[Int] = {
     val updateAction = positions.filter(_.id === id)
       .map(p => (p.quantite, p.prix_achat, p.date_achat))
-      .update((quantity, purchasePrice, purchaseDate))
-    db.run(updateAction)
+      .update((quantite, prix_achat, date_achat))
+    db.run(updateAction) 
   }
 }

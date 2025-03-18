@@ -15,6 +15,7 @@ import scala.io.StdIn
 import scala.concurrent.ExecutionContextExecutor
 import scala.concurrent.Future
 
+
 import java.time.LocalDate
 
 object Main extends App {
@@ -55,6 +56,7 @@ object Main extends App {
 
 
   //val newActiveCourse = ActiveCourses(1,1,10.57,2.0)
+  println("Notif insere avec succes !")
 
   //val insertResult3 = ActiveCoursesDAO.insert(newActiveCourse)
   //Await.result(insertResult3, Duration.Inf)
@@ -68,6 +70,8 @@ object Main extends App {
 
   /*val newActiveCourse = ActiveCourses(1,1,10.57,2.0)
 
+  //val insertResult3 = ActiveCoursesDAO.insert(newActiveCourse)
+  //Await.result(insertResult3, Duration.Inf)
   val insertResult3 = ActiveCoursesDAO.insert(newActiveCourse)
   Await.result(insertResult3, Duration.Inf)*/
 
