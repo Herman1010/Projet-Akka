@@ -6,7 +6,7 @@ import scala.concurrent.ExecutionContext.Implicits.global
 
 
 
-  case class position(id: Int, portefeuille_id: Int, actif_id: Int,quantite: Double ,prix_achat:Double, date_achat: LocalDate)
+  case class Position(id: Int, portefeuille_id: Int, actif_id: Int,quantite: Double ,prix_achat:Double, date_achat: LocalDate)
   class Positions(tag: Tag) extends Table[Position](tag, "positions") {
   def id = column[Int]("id", O.PrimaryKey, O.AutoInc)
   def portefeuille_id = column[Int]("portefeuille_id")
@@ -25,41 +25,41 @@ object PositionDAO {
   val positions = TableQuery[Positions]
   val db = DatabaseConfig.db
 
-  // Insertion d'une nouvelle position en prenant directement un objet Position
+  
   def addPosition(position: Position): Future[Int] = {
     val insertAction = positions += position
     db.run(insertAction)
   }
 
-  // Récupérer toutes les positions d'un portefeuille
+  
   def getPositionsByPortfolio(portefeuille_id: Int): Future[Seq[Position]] = {
     val query = positions.filter(_.portefeuille_id === portefeuille_id).result
     db.run(query)
   }
 
-  // Récupérer toutes les positions d'un actif
+  
   def getPositionsByAsset(assetId: Int): Future[Seq[Position]] = {
-    val query = positions.filter(_.actif_id === actif_id).result
+    val query = positions.filter(_.actif_id === assetId).result
     db.run(query)
   }
 
-  // Récupérer une position par son ID
+
   def getPositionById(positionId: Int): Future[Option[Position]] = {
     val query = positions.filter(_.id === positionId).result.headOption
     db.run(query)
   }
 
-  // Supprimer une position
+
   def removePosition(positionId: Int): Future[Int] = {
     val deleteAction = positions.filter(_.id === positionId).delete
     db.run(deleteAction)
   }
 
-  // Modifier une position existante
+  
   def updatePosition(id: Int, quantity: Double, purchasePrice: Double, purchaseDate: LocalDate): Future[Int] = {
     val updateAction = positions.filter(_.id === id)
       .map(p => (p.quantite, p.prix_achat, p.date_achat))
-      .update((quantite, prix_achat, date_achat))
+      .update((quantity, purchasePrice, purchaseDate))
     db.run(updateAction)
   }
 }
