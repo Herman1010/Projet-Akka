@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="test@localhost">
-  <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.48">
+  <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.53">
     <root id="1">
       <DateStyle>mdy</DateStyle>
       <IntrospectionStateNumber>779</IntrospectionStateNumber>
@@ -4233,59 +4233,59 @@ false Zulu
       <OwnerName>pg_database_owner</OwnerName>
     </schema>
     <sequence id="266" parent="265" name="actif_id_seq">
-      <DasType>integer|0s</DasType>
       <ObjectId>16443</ObjectId>
-      <SequenceIdentity>1(1)</SequenceIdentity>
+      <SequenceIdentity>1</SequenceIdentity>
       <StartValue>1</StartValue>
       <StateNumber>766</StateNumber>
+      <StoredType>integer|0s</StoredType>
       <OwnerName>postgres</OwnerName>
     </sequence>
     <sequence id="267" parent="265" name="cours_actif_id_seq">
-      <DasType>integer|0s</DasType>
       <ObjectId>16495</ObjectId>
-      <SequenceIdentity>1(1)</SequenceIdentity>
+      <SequenceIdentity>1</SequenceIdentity>
       <StartValue>1</StartValue>
       <StateNumber>769</StateNumber>
+      <StoredType>integer|0s</StoredType>
       <OwnerName>postgres</OwnerName>
     </sequence>
     <sequence id="268" parent="265" name="notification_id_seq">
-      <DasType>integer|0s</DasType>
       <ObjectId>16509</ObjectId>
-      <SequenceIdentity>1(1)</SequenceIdentity>
+      <SequenceIdentity>1</SequenceIdentity>
       <StartValue>1</StartValue>
       <StateNumber>770</StateNumber>
+      <StoredType>integer|0s</StoredType>
       <OwnerName>postgres</OwnerName>
     </sequence>
     <sequence id="269" parent="265" name="portefeuille_id_seq">
-      <DasType>integer|0s</DasType>
       <ObjectId>16429</ObjectId>
-      <SequenceIdentity>1(1)</SequenceIdentity>
+      <SequenceIdentity>1</SequenceIdentity>
       <StartValue>1</StartValue>
       <StateNumber>765</StateNumber>
+      <StoredType>integer|0s</StoredType>
       <OwnerName>postgres</OwnerName>
     </sequence>
     <sequence id="270" parent="265" name="position_id_seq">
-      <DasType>integer|0s</DasType>
       <ObjectId>16454</ObjectId>
-      <SequenceIdentity>1(1)</SequenceIdentity>
+      <SequenceIdentity>1</SequenceIdentity>
       <StartValue>1</StartValue>
       <StateNumber>767</StateNumber>
+      <StoredType>integer|0s</StoredType>
       <OwnerName>postgres</OwnerName>
     </sequence>
     <sequence id="271" parent="265" name="transaction_id_seq">
-      <DasType>integer|0s</DasType>
       <ObjectId>16474</ObjectId>
-      <SequenceIdentity>1(1)</SequenceIdentity>
+      <SequenceIdentity>1</SequenceIdentity>
       <StartValue>1</StartValue>
       <StateNumber>768</StateNumber>
+      <StoredType>integer|0s</StoredType>
       <OwnerName>postgres</OwnerName>
     </sequence>
     <sequence id="272" parent="265" name="utilisateur_id_seq">
-      <DasType>integer|0s</DasType>
       <ObjectId>16416</ObjectId>
-      <SequenceIdentity>1(1)</SequenceIdentity>
+      <SequenceIdentity>1</SequenceIdentity>
       <StartValue>1</StartValue>
       <StateNumber>757</StateNumber>
+      <StoredType>integer|0s</StoredType>
       <OwnerName>postgres</OwnerName>
     </sequence>
     <table id="273" parent="265" name="actif">
@@ -4337,45 +4337,45 @@ false Zulu
       <StateNumber>766</StateNumber>
     </check>
     <column id="281" parent="273" name="id">
-      <DasType>integer|0s</DasType>
       <DefaultExpression>nextval(&apos;actif_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>766</StateNumber>
+      <StoredType>integer|0s</StoredType>
       <SequenceId>16443</SequenceId>
       <TypeId>23</TypeId>
     </column>
     <column id="282" parent="273" name="symbole">
-      <DasType>varchar(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>766</StateNumber>
+      <StoredType>varchar(20)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
     <column id="283" parent="273" name="nom">
-      <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StateNumber>766</StateNumber>
+      <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
     <column id="284" parent="273" name="type">
-      <DasType>varchar(50)|0s</DasType>
       <Position>4</Position>
       <StateNumber>766</StateNumber>
+      <StoredType>varchar(50)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
     <column id="285" parent="273" name="marche">
-      <DasType>varchar(50)|0s</DasType>
       <Position>5</Position>
       <StateNumber>766</StateNumber>
+      <StoredType>varchar(50)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
     <column id="286" parent="273" name="date_creation">
-      <DasType>timestamp|0s</DasType>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <Position>6</Position>
       <StateNumber>766</StateNumber>
+      <StoredType>timestamp|0s</StoredType>
       <TypeId>1114</TypeId>
     </column>
     <index id="287" parent="273" name="actif_pkey">
@@ -4418,39 +4418,39 @@ false Zulu
       <StateNumber>769</StateNumber>
     </check>
     <column id="292" parent="274" name="id">
-      <DasType>integer|0s</DasType>
       <DefaultExpression>nextval(&apos;cours_actif_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>769</StateNumber>
+      <StoredType>integer|0s</StoredType>
       <SequenceId>16495</SequenceId>
       <TypeId>23</TypeId>
     </column>
     <column id="293" parent="274" name="actif_id">
-      <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>769</StateNumber>
+      <StoredType>integer|0s</StoredType>
       <TypeId>23</TypeId>
     </column>
     <column id="294" parent="274" name="prix">
-      <DasType>numeric(18,2 digit)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StateNumber>769</StateNumber>
+      <StoredType>numeric(18,2 digit)|0s</StoredType>
       <TypeId>1700</TypeId>
     </column>
     <column id="295" parent="274" name="volume">
-      <DasType>numeric(18,2 digit)|0s</DasType>
       <Position>4</Position>
       <StateNumber>769</StateNumber>
+      <StoredType>numeric(18,2 digit)|0s</StoredType>
       <TypeId>1700</TypeId>
     </column>
     <column id="296" parent="274" name="timestamp">
-      <DasType>timestamp|0s</DasType>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <Position>5</Position>
       <StateNumber>769</StateNumber>
+      <StoredType>timestamp|0s</StoredType>
       <TypeId>1114</TypeId>
     </column>
     <foreign-key id="297" parent="274" name="cours_actif_actif_id_fkey">
@@ -4458,9 +4458,9 @@ false Zulu
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16504</ObjectId>
       <OnDelete>cascade</OnDelete>
-      <RefColNames>id</RefColNames>
-      <RefColPositions>1</RefColPositions>
       <StateNumber>769</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefKeyColNames>id</RefKeyColNames>
       <RefTableId>16444</RefTableId>
       <RefTableName>actif</RefTableName>
       <RefTableKind>table</RefTableKind>
@@ -4482,40 +4482,40 @@ false Zulu
       <UnderlyingIndexId>16502</UnderlyingIndexId>
     </key>
     <column id="300" parent="275" name="id">
-      <DasType>integer|0s</DasType>
       <DefaultExpression>nextval(&apos;notification_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>770</StateNumber>
+      <StoredType>integer|0s</StoredType>
       <SequenceId>16509</SequenceId>
       <TypeId>23</TypeId>
     </column>
     <column id="301" parent="275" name="utilisateur_id">
-      <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>770</StateNumber>
+      <StoredType>integer|0s</StoredType>
       <TypeId>23</TypeId>
     </column>
     <column id="302" parent="275" name="message">
-      <DasType>text|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StateNumber>770</StateNumber>
+      <StoredType>text|0s</StoredType>
       <TypeId>25</TypeId>
     </column>
     <column id="303" parent="275" name="lu">
-      <DasType>boolean|0s</DasType>
       <DefaultExpression>false</DefaultExpression>
       <Position>4</Position>
       <StateNumber>770</StateNumber>
+      <StoredType>boolean|0s</StoredType>
       <TypeId>16</TypeId>
     </column>
     <column id="304" parent="275" name="date_envoi">
-      <DasType>timestamp|0s</DasType>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <Position>5</Position>
       <StateNumber>770</StateNumber>
+      <StoredType>timestamp|0s</StoredType>
       <TypeId>1114</TypeId>
     </column>
     <foreign-key id="305" parent="275" name="notification_utilisateur_id_fkey">
@@ -4523,9 +4523,9 @@ false Zulu
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16520</ObjectId>
       <OnDelete>cascade</OnDelete>
-      <RefColNames>id</RefColNames>
-      <RefColPositions>1</RefColPositions>
       <StateNumber>770</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefKeyColNames>id</RefKeyColNames>
       <RefTableId>16417</RefTableId>
       <RefTableName>utilisateur</RefTableName>
       <RefTableKind>table</RefTableKind>
@@ -4553,41 +4553,41 @@ false Zulu
       <StateNumber>765</StateNumber>
     </check>
     <column id="309" parent="276" name="id">
-      <DasType>integer|0s</DasType>
       <DefaultExpression>nextval(&apos;portefeuille_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>765</StateNumber>
+      <StoredType>integer|0s</StoredType>
       <SequenceId>16429</SequenceId>
       <TypeId>23</TypeId>
     </column>
     <column id="310" parent="276" name="utilisateur_id">
-      <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>765</StateNumber>
+      <StoredType>integer|0s</StoredType>
       <TypeId>23</TypeId>
     </column>
     <column id="311" parent="276" name="nom">
-      <DasType>varchar(100)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StateNumber>765</StateNumber>
+      <StoredType>varchar(100)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
     <column id="312" parent="276" name="devise">
-      <DasType>varchar(10)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StateNumber>765</StateNumber>
+      <StoredType>varchar(10)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
     <column id="313" parent="276" name="valeur_initiale">
-      <DasType>numeric(18,2 digit)|0s</DasType>
       <DefaultExpression>0</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StateNumber>765</StateNumber>
+      <StoredType>numeric(18,2 digit)|0s</StoredType>
       <TypeId>1700</TypeId>
     </column>
     <foreign-key id="314" parent="276" name="portefeuille_utilisateur_id_fkey">
@@ -4595,9 +4595,9 @@ false Zulu
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16438</ObjectId>
       <OnDelete>cascade</OnDelete>
-      <RefColNames>id</RefColNames>
-      <RefColPositions>1</RefColPositions>
       <StateNumber>765</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefKeyColNames>id</RefKeyColNames>
       <RefTableId>16417</RefTableId>
       <RefTableName>utilisateur</RefTableName>
       <RefTableKind>table</RefTableKind>
@@ -4631,48 +4631,48 @@ false Zulu
       <StateNumber>767</StateNumber>
     </check>
     <column id="319" parent="277" name="id">
-      <DasType>integer|0s</DasType>
       <DefaultExpression>nextval(&apos;position_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>767</StateNumber>
+      <StoredType>integer|0s</StoredType>
       <SequenceId>16454</SequenceId>
       <TypeId>23</TypeId>
     </column>
     <column id="320" parent="277" name="portefeuille_id">
-      <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>767</StateNumber>
+      <StoredType>integer|0s</StoredType>
       <TypeId>23</TypeId>
     </column>
     <column id="321" parent="277" name="actif_id">
-      <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StateNumber>767</StateNumber>
+      <StoredType>integer|0s</StoredType>
       <TypeId>23</TypeId>
     </column>
     <column id="322" parent="277" name="quantite">
-      <DasType>numeric(18,6 digit)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StateNumber>767</StateNumber>
+      <StoredType>numeric(18,6 digit)|0s</StoredType>
       <TypeId>1700</TypeId>
     </column>
     <column id="323" parent="277" name="prix_achat">
-      <DasType>numeric(18,2 digit)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StateNumber>767</StateNumber>
+      <StoredType>numeric(18,2 digit)|0s</StoredType>
       <TypeId>1700</TypeId>
     </column>
     <column id="324" parent="277" name="date_achat">
-      <DasType>timestamp|0s</DasType>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>6</Position>
       <StateNumber>767</StateNumber>
+      <StoredType>timestamp|0s</StoredType>
       <TypeId>1114</TypeId>
     </column>
     <foreign-key id="325" parent="277" name="position_portefeuille_id_fkey">
@@ -4680,9 +4680,9 @@ false Zulu
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16464</ObjectId>
       <OnDelete>cascade</OnDelete>
-      <RefColNames>id</RefColNames>
-      <RefColPositions>1</RefColPositions>
       <StateNumber>767</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefKeyColNames>id</RefKeyColNames>
       <RefTableId>16430</RefTableId>
       <RefTableName>portefeuille</RefTableName>
       <RefTableKind>table</RefTableKind>
@@ -4692,9 +4692,9 @@ false Zulu
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16469</ObjectId>
       <OnDelete>cascade</OnDelete>
-      <RefColNames>id</RefColNames>
-      <RefColPositions>1</RefColPositions>
       <StateNumber>767</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefKeyColNames>id</RefKeyColNames>
       <RefTableId>16444</RefTableId>
       <RefTableName>actif</RefTableName>
       <RefTableKind>table</RefTableKind>
@@ -4734,53 +4734,53 @@ false Zulu
       <StateNumber>768</StateNumber>
     </check>
     <column id="332" parent="278" name="id">
-      <DasType>integer|0s</DasType>
       <DefaultExpression>nextval(&apos;transaction_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>768</StateNumber>
+      <StoredType>integer|0s</StoredType>
       <SequenceId>16474</SequenceId>
       <TypeId>23</TypeId>
     </column>
     <column id="333" parent="278" name="portefeuille_id">
-      <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>768</StateNumber>
+      <StoredType>integer|0s</StoredType>
       <TypeId>23</TypeId>
     </column>
     <column id="334" parent="278" name="actif_id">
-      <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StateNumber>768</StateNumber>
+      <StoredType>integer|0s</StoredType>
       <TypeId>23</TypeId>
     </column>
     <column id="335" parent="278" name="type_transaction">
-      <DasType>varchar(10)|0s</DasType>
       <Position>4</Position>
       <StateNumber>768</StateNumber>
+      <StoredType>varchar(10)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
     <column id="336" parent="278" name="quantite">
-      <DasType>numeric(18,6 digit)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StateNumber>768</StateNumber>
+      <StoredType>numeric(18,6 digit)|0s</StoredType>
       <TypeId>1700</TypeId>
     </column>
     <column id="337" parent="278" name="prix_unitaire">
-      <DasType>numeric(18,2 digit)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>6</Position>
       <StateNumber>768</StateNumber>
+      <StoredType>numeric(18,2 digit)|0s</StoredType>
       <TypeId>1700</TypeId>
     </column>
     <column id="338" parent="278" name="date_transaction">
-      <DasType>timestamp|0s</DasType>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <Position>7</Position>
       <StateNumber>768</StateNumber>
+      <StoredType>timestamp|0s</StoredType>
       <TypeId>1114</TypeId>
     </column>
     <foreign-key id="339" parent="278" name="transaction_portefeuille_id_fkey">
@@ -4788,9 +4788,9 @@ false Zulu
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16485</ObjectId>
       <OnDelete>cascade</OnDelete>
-      <RefColNames>id</RefColNames>
-      <RefColPositions>1</RefColPositions>
       <StateNumber>768</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefKeyColNames>id</RefKeyColNames>
       <RefTableId>16430</RefTableId>
       <RefTableName>portefeuille</RefTableName>
       <RefTableKind>table</RefTableKind>
@@ -4800,9 +4800,9 @@ false Zulu
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16490</ObjectId>
       <OnDelete>cascade</OnDelete>
-      <RefColNames>id</RefColNames>
-      <RefColPositions>1</RefColPositions>
       <StateNumber>768</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefKeyColNames>id</RefKeyColNames>
       <RefTableId>16444</RefTableId>
       <RefTableName>actif</RefTableName>
       <RefTableKind>table</RefTableKind>
@@ -4824,40 +4824,40 @@ false Zulu
       <UnderlyingIndexId>16483</UnderlyingIndexId>
     </key>
     <column id="343" parent="279" name="id">
-      <DasType>integer|0s</DasType>
       <DefaultExpression>nextval(&apos;utilisateur_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>757</StateNumber>
+      <StoredType>integer|0s</StoredType>
       <SequenceId>16416</SequenceId>
       <TypeId>23</TypeId>
     </column>
     <column id="344" parent="279" name="nom">
-      <DasType>varchar(100)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>757</StateNumber>
+      <StoredType>varchar(100)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
     <column id="345" parent="279" name="email">
-      <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StateNumber>757</StateNumber>
+      <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
     <column id="346" parent="279" name="mot_de_passe_hash">
-      <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StateNumber>757</StateNumber>
+      <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
     <column id="347" parent="279" name="date_inscription">
-      <DasType>timestamp|0s</DasType>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <Position>5</Position>
       <StateNumber>757</StateNumber>
+      <StoredType>timestamp|0s</StoredType>
       <TypeId>1114</TypeId>
     </column>
     <index id="348" parent="279" name="utilisateur_pkey">

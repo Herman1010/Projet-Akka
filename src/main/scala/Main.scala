@@ -11,11 +11,11 @@ import akka.actor.typed.ActorSystem
 import scala.concurrent.Await
 import scala.concurrent.duration.Duration
 
-
 import scala.io.StdIn
 import scala.concurrent.ExecutionContextExecutor
 import scala.concurrent.Future
 
+import java.time.LocalDate
 
 object Main extends App {
   implicit val system: ActorSystem[Nothing] = ActorSystem(Behaviors.empty, "my-system")
@@ -53,10 +53,23 @@ object Main extends App {
   val suppressionResult = Await.result(PortefeuilleDAO.delete(PortefeuilleId), Duration.Inf)
   println(suppressionResult)
 
+
   //val newActiveCourse = ActiveCourses(1,1,10.57,2.0)
 
   //val insertResult3 = ActiveCoursesDAO.insert(newActiveCourse)
   //Await.result(insertResult3, Duration.Inf)
+
+  val newTransaction = Transaction(4, 2, 3, TypeTransaction.Achat, 12, 12, LocalDate.of(2024, 5, 10))
+
+  val insertResult4 = TransactionDAO.insert(newTransaction)
+  Await.result(insertResult4, Duration.Inf)
+
+  println("Transaction insere avec succes !")
+
+  /*val newActiveCourse = ActiveCourses(1,1,10.57,2.0)
+
+  val insertResult3 = ActiveCoursesDAO.insert(newActiveCourse)
+  Await.result(insertResult3, Duration.Inf)*/
 
   println(s"Serveur demarre sur http://localhost:8080/\nAppuyez sur Entrer pour arreter...")
   StdIn.readLine()
