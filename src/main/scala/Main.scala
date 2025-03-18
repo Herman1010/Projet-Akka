@@ -54,8 +54,12 @@ object Main extends App {
   val suppressionResult = Await.result(PortefeuilleDAO.delete(PortefeuilleId), Duration.Inf)
   println(suppressionResult)
 
+
   //val newActiveCourse = ActiveCourses(1,1,10.57,2.0)
   println("Notif insere avec succes !")
+
+  //val insertResult3 = ActiveCoursesDAO.insert(newActiveCourse)
+  //Await.result(insertResult3, Duration.Inf)
 
   val newTransaction = Transaction(4, 2, 3, TypeTransaction.Achat, 12, 12, LocalDate.of(2024, 5, 10))
 

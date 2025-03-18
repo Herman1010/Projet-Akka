@@ -23,17 +23,19 @@ object PositionDAO {
   val positions = TableQuery[PositionTable]
   val db = DatabaseConfig.db
 
-  // Insertion d'une nouvelle position en prenant directement un objet Position
+  
   def addPosition(position: Position): Future[Int] = {
     val insertAction = positions += position
     db.run(insertAction)
   }
 
-  // Récupérer toutes les positions d'un portefeuille
+  
   def getPositionsByPortfolio(portefeuille_id: Int): Future[Seq[Position]] = {
     val query = positions.filter(_.portefeuille_id === portefeuille_id).result
     db.run(query)
   }
+
+  
 
   // Récupérer toutes les positions d'un actif
   def getPositionsByAsset(actif_id: Int): Future[Seq[Position]] = {
@@ -41,18 +43,20 @@ object PositionDAO {
     db.run(query)
   }
 
-  // Récupérer une position par son ID
+
   def getPositionById(positionId: Int): Future[Option[Position]] = {
     val query = positions.filter(_.id === positionId).result.headOption
     db.run(query)
   }
 
-  // Supprimer une position
+
   def removePosition(positionId: Int): Future[Int] = {
     val deleteAction = positions.filter(_.id === positionId).delete
     db.run(deleteAction)
   }
 
+  
+ 
   // Modifier une position existante
   def updatePosition(id: Int, quantite: Double, prix_achat: Double, date_achat: LocalDate): Future[Int] = {
     val updateAction = positions.filter(_.id === id)
