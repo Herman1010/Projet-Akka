@@ -1,4 +1,4 @@
-import akka.actor.typed.ActorRef
+/*import akka.actor.typed.ActorRef
 import akka.actor.typed.Behavior
 import akka.actor.typed.scaladsl.Behaviors
 
@@ -28,7 +28,7 @@ object PortefeuilleActor {
             updatedBehavior(nouveauPortefeuille)
 
           case ObtenirValeur(replyTo) =>
-            replyTo ! portefeuille.valeurTotale
+            replyTo ! positionDAO.valeurTotale()
             Behaviors.same
         }
       }
@@ -37,3 +37,4 @@ object PortefeuilleActor {
     }
 }
 
+*/

@@ -1,4 +1,4 @@
-import slick.jdbc.PostgresProfile.api._
+/*import slick.jdbc.PostgresProfile.api._
 import scala.concurrent.{Future, ExecutionContext}
 
 // Modèle de l'entité Actif
@@ -52,3 +52,4 @@ class ActifDAO(db: Database)(implicit ec: ExecutionContext) {
     db.run(actifs.filter(_.id === id).delete)
   }
 }
+*/

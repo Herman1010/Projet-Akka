@@ -1,7 +1,7 @@
-import slick.jdbc.PostgresProfile.api._
+/*import slick.jdbc.PostgresProfile.api._
 import scala.concurrent.{Future, ExecutionContext}
 
-// Modèle de l'entité Position
+// Modle de l'entité Position
 case class Position(
     id: Option[Int] = None,
     portefeuilleId: Int,
@@ -51,8 +51,10 @@ class PositionDAO(db: Database)(implicit ec: ExecutionContext) {
     db.run(positions.filter(_.id === id).update(position.copy(id = Some(id))))
   }
 
+
   // Supprimer une position
   def delete(id: Int): Future[Int] = {
     db.run(positions.filter(_.id === id).delete)
   }
 }
+*/
