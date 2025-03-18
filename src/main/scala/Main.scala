@@ -11,7 +11,6 @@ import akka.actor.typed.ActorSystem
 import scala.concurrent.Await
 import scala.concurrent.duration.Duration
 
-
 import scala.io.StdIn
 import scala.concurrent.ExecutionContextExecutor
 import scala.concurrent.Future
@@ -21,6 +20,8 @@ import io.circe.parser._
 import io.circe.generic.auto._
 import io.circe.Json
 
+
+import java.time.LocalDate
 
 object Main extends App {
   implicit val system: ActorSystem[Nothing] = ActorSystem(Behaviors.empty, "my-system")
@@ -69,7 +70,53 @@ object Main extends App {
       println(s"Erreur : $error")
   }
 
+/*
+  val newUser = Utilisateur(5, "Herman", "herman@aaaa.com", "1234")
 
+    val insertResult = UserDAO.insert(newUser)
+    Await.result(insertResult, Duration.Inf)
+  println("Utilisateur insere avec succes !")
+
+  val newNotif = Notifications(10,1,"message test")
+
+  val insertResult2 = NotifDAO.insert(newNotif)
+  Await.result(insertResult2, Duration.Inf)
+  println("Notif insere avec succes !")
+  val portefeuille = Portefeuille(None, 5,"portefeuille1","EUR",1000)
+  // Insert portfolio
+  val ajoutResult = PortefeuilleDAO.insert(portefeuille)
+  val PortefeuilleId = Await.result(ajoutResult, Duration.Inf)
+  println(s"portefeuille ajouté avec ID: $PortefeuilleId")
+
+  /* Retrieve the portfolio */
+  val fetchedActif = Await.result(PortefeuilleDAO.getById(PortefeuilleId), Duration.Inf)
+  println(s"portefeuille récupéré: $fetchedActif")
+
+  // Delete the portfolio
+  val suppressionResult = Await.result(PortefeuilleDAO.delete(PortefeuilleId), Duration.Inf)
+  println(suppressionResult)
+
+
+  //val newActiveCourse = ActiveCourses(1,1,10.57,2.0)
+  println("Notif insere avec succes !")
+
+  //val insertResult3 = ActiveCoursesDAO.insert(newActiveCourse)
+  //Await.result(insertResult3, Duration.Inf)
+
+  val newTransaction = Transaction(4, 2, 3, TypeTransaction.Achat, 12, 12, LocalDate.of(2024, 5, 10))
+
+  val insertResult4 = TransactionDAO.insert(newTransaction)
+  Await.result(insertResult4, Duration.Inf)
+
+  println("Transaction insere avec succes !")
+
+  /*val newActiveCourse = ActiveCourses(1,1,10.57,2.0)
+
+  //val insertResult3 = ActiveCoursesDAO.insert(newActiveCourse)
+  //Await.result(insertResult3, Duration.Inf)
+  val insertResult3 = ActiveCoursesDAO.insert(newActiveCourse)
+  Await.result(insertResult3, Duration.Inf)*/
+*/
   println(s"Serveur demarre sur http://localhost:8080/\nAppuyez sur Entrer pour arreter...")
   StdIn.readLine()
 

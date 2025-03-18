@@ -1,2 +1,6 @@
 /.bsp/
 target/
+.metals/
+src/main/resources/application.conf
+.idea/
+.vscode/

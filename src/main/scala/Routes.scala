@@ -19,8 +19,40 @@ object Routes extends JsonFormats {
                     utilisateur => complete(utilisateur.toJson)
                 }
             }
-        }*/
+        }
 
+        } ~
+      path("api"/ "notif"){
+        get {
+          onSuccess(NotifDAO.getAll()){
+            notifications => complete(notifications.toJson)
+          }
+        }
+      } ~
+      path("api" / "ActiveCourses"){
+        get {
+          onSuccess(ActiveCoursesDAO.getAll()){
+            activeCourses => complete(activeCourses.toJson)
+          }
+        }
+      }
+      path("api"/"portefeuilles"){
+            get {
+                //complete(Message(UserDAO.getAll()))
+                onSuccess(PortefeuilleDAO.getAll()){
+                    portefeuille => complete(portefeuille.toJson)
+                }
+            }
+        }
+      path("api"/"actifs"){
+            get {
+                //complete(Message(UserDAO.getAll()))
+                onSuccess(ActifDAO.getAll()){
+                    actif => complete(actif.toJson)
+                }
+            }
+        }
+*/
     val routes = cors() {
   pathPrefix("api" / "message2") {
     get {
