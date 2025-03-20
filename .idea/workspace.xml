@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="12942995-8bd9-4145-b598-38cf85766eee" name="Changes" comment="test">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/8718a222-8ea1-4ab3-8630-202795068e26.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/8718a222-8ea1-4ab3-8630-202795068e26.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/8718a222-8ea1-4ab3-8630-202795068e26/storage_v2/_src_/database/test.kkQ2AA/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/8718a222-8ea1-4ab3-8630-202795068e26/storage_v2/_src_/database/test.kkQ2AA/schema/public.abK9xQ.meta" afterDir="false" />
+    <list default="true" id="12942995-8bd9-4145-b598-38cf85766eee" name="Changes" comment="feat: can now add position from frontend">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/Utils/JsonFormats.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Utils/JsonFormats.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/Utils/Routes.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Utils/Routes.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/dao/PositionDAO.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/dao/PositionDAO.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,7 +134,7 @@
       <workItem from="1742050055617" duration="239000" />
       <workItem from="1742125596646" duration="3741000" />
       <workItem from="1742131093672" duration="1376000" />
-      <workItem from="1742480678276" duration="2811000" />
+      <workItem from="1742480678276" duration="7280000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1742050976040</created>
@@ -148,7 +143,14 @@
       <option name="project" value="LOCAL" />
       <updated>1742050976040</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="feat: can now add position from frontend">
+      <created>1742483607334</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1742483607334</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -170,6 +172,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="test" />
-    <option name="LAST_COMMIT_MESSAGE" value="test" />
+    <MESSAGE value="feat: can now add position from frontend" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: can now add position from frontend" />
   </component>
 </project>

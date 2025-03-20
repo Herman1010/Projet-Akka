@@ -3,12 +3,23 @@ import akka.http.scaladsl.server.Route
 import ch.megard.akka.http.cors.scaladsl.CorsDirectives._
 import spray.json._
 import akka.http.scaladsl.marshalling.ToResponseMarshallable
+import akka.http.scaladsl.model.HttpMethods.{DELETE, PUT,POST,GET,OPTIONS}
 import akka.http.scaladsl.unmarshalling.Unmarshal
 import akka.http.scaladsl.model.StatusCodes
+
 import scala.concurrent.Future
+import ch.megard.akka.http.cors.scaladsl.CorsDirectives._
+import ch.megard.akka.http.cors.scaladsl.settings.CorsSettings
+import ch.megard.akka.http.cors.scaladsl.settings._
+import ch.megard.akka.http.cors.scaladsl.model.HttpOriginMatcher
+
 object Routes extends JsonFormats {
+
+  val corsSettings = CorsSettings.defaultSettings.withAllowCredentials(true)
+    .withAllowedMethods(Seq(GET,POST,PUT,DELETE,OPTIONS))
+    .withAllowedOrigins(HttpOriginMatcher.*)
   //val route: Route =
-  val routes = cors() {
+  val routes = cors(corsSettings) {
     pathPrefix("api" / "message2") {
       get {
         onSuccess(UserDAO.getAll()) {
