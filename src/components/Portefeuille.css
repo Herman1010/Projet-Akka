@@ -1,0 +1,31 @@
+.portefeuille-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 400px; /* Limite la largeur du formulaire */
+    margin: auto; /* Centre le formulaire */
+    padding-top: 20px;
+}
+
+.portefeuille-form input,
+.portefeuille-form select {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
