@@ -4,6 +4,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
+To run this project you need to pull both master and main branch on different project and run the master branch with 
+### `sbt run`
+Then you can follow the next instructions to launch the React app
+
 In the project directory, you can run:
 
 ### `npm start`
