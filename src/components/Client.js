@@ -9,8 +9,8 @@ const Client = () => {
 
     const DeleteClient = async(id)=>{
         try{
-            await axios.delete(`http://localhost:8080/api/message2/${id}`)
-            const response = await axios.get('http://localhost:8080/api/message2');
+            await axios.delete(`http://localhost:8080/api/users/${id}`)
+            const response = await axios.get('http://localhost:8080/api/users');
             setDeleteMsg(true);
             //inputRef.current.scrollIntoView({ behavior: 'smooth' });
             setClients(response.data);
@@ -22,7 +22,7 @@ const Client = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/api/message2');
+                const response = await axios.get('http://localhost:8080/api/users');
                 if (response) {
                     setClients(response.data);
                 }

@@ -3,7 +3,7 @@ import React from 'react';
 const Footer = () => {
     return (
         <footer style={styles.footer}>
-            <p style={styles.text}>© 2025 CY Finance. All Rights Reserved.</p>
+            <p style={styles.text}>© 2025 PROJECT Scala. All Rights Reserved.</p>
         </footer>
     );
 };
