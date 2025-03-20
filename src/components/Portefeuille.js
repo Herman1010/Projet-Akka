@@ -42,23 +42,25 @@ const Portefeuille = () => {
             ...prevState,
             [name]: value === "" ? "" : isNaN(value) ? value : Number(value)
         }));
+        setErrorMessage("");
     };
 
     const addPortefeuille = async () => {
-        if (!newPortefeuille.nom || !newPortefeuille.devise || !newPortefeuille.valeurInitiale) {
-            setErrorMessage("Tous les champs doivent être remplis.");
-            return;
-        }
         if (isNaN(newPortefeuille.valeurInitiale) || Number(newPortefeuille.valeurInitiale) <= 0) {
             setErrorMessage("La valeur initiale doit être un nombre positif.");
             return;
         }
+        if (!newPortefeuille.nom || !newPortefeuille.devise || !newPortefeuille.valeurInitiale) {
+            setErrorMessage("Tous les champs doivent être remplis.");
+            return;
+        }
+
 
         const payload = {
             utilisateurId: newPortefeuille.utilisateur_id,
             nom: newPortefeuille.nom,
             devise: newPortefeuille.devise,
-            valeurInitiale: Number(newPortefeuille.valeurInitiale)
+            valeurInitiale: newPortefeuille.valeurInitiale
         };
 
         try {
@@ -84,7 +86,11 @@ const Portefeuille = () => {
     return (
         <div>
             <h1>Portefeuille</h1>
-        <div className="portefeuille-form">
+            {deleteMsg && <div>La position a été supprimée avec succès</div>}
+
+            {errorMessage && <div style={{ color: 'red', marginBottom: '10px' }}>{errorMessage}</div>}
+
+            <div className="portefeuille-form">
             <input
                 type="text"
                 name="nom"
