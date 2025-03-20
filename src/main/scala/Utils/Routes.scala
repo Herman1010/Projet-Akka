@@ -53,15 +53,28 @@ object Routes extends JsonFormats {
       }~
       pathPrefix("api" / "portefeuilles") {
         get {
-          //complete(Message(UserDAO.getAll()))
           onSuccess(PortefeuilleDAO.getAll()) {
             portefeuille => complete(portefeuille.toJson)
           }
-        }
+        } ~
+          post {
+            entity(as[String]) { body =>
+              val json = body.parseJson.convertTo[Portefeuille]
+              onSuccess(PortefeuilleDAO.insert(json)) { result =>
+                complete(StatusCodes.Created, result.toJson)
+              }
+            }
+          } ~
+          delete {
+            path(IntNumber) { id =>
+              onSuccess(PortefeuilleDAO.delete(id)) { result =>
+                complete(StatusCodes.OK, s"Position $id supprimée")
+              }
+            }
+          }
       }~
       pathPrefix("api" / "actifs") {
         get {
-          //complete(Message(UserDAO.getAll()))
           onSuccess(ActifDAO.getAll()) {
             actif => complete(actif.toJson)
           }
