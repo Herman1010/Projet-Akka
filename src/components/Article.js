@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import PositionCard from "./PositionCard";
+import './Article.css'
 
 const Position = () => {
     const [positions, setPositions] = useState([]);
@@ -67,6 +68,7 @@ const Position = () => {
             ...prevState,
             [name]: value === "" ? "" : isNaN(value) ? value : Number(value)
         }));
+        setErrorMessage("");
     };
 
     const addPosition = async () => {
@@ -98,11 +100,11 @@ const Position = () => {
 
     return (
         <div>
-            <h1>Positions</h1>
+            <h1>Actifs</h1>
             {deleteMsg && <div>La position a été supprimée avec succès</div>}
 
             {errorMessage && <div style={{ color: 'red', marginBottom: '10px' }}>{errorMessage}</div>}
-
+            <div className='actif-form'>
             <select
                 name="portefeuille_id"
                 value={newPosition.portefeuille_id}
@@ -128,10 +130,10 @@ const Position = () => {
                     </option>
                 ))}
             </select>
-            <input type="number" name="quantite" placeholder="Quantité" value={newPosition.quantite} onChange={handleInputChange} />
-            <input type="number" name="prix_achat" placeholder="Prix Achat" value={newPosition.prix_achat} onChange={handleInputChange} />
+            <input className='input-position' type="number" name="quantite" placeholder="Quantité" value={newPosition.quantite} onChange={handleInputChange} />
+            <input className='input-position' type="number" name="prix_achat" placeholder="Prix Achat" value={newPosition.prix_achat} onChange={handleInputChange} />
 
-            <button onClick={addPosition}>Acheter</button>
+            <button className='buyButton' onClick={addPosition}>Acheter</button></div>
 
             <div className="position-list">
                 {positions.map((position) => (
