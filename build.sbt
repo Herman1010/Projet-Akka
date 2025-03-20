@@ -16,7 +16,7 @@ lazy val root = (project in file("."))
     name := "Akka1",
     version := "0.1",
     libraryDependencies ++= Seq(
-      "com.typesafe.akka" %% "akka-actor-typed" % AkkaVersion,
+            "com.typesafe.akka" %% "akka-actor-typed" % AkkaVersion,
       "com.typesafe.akka" %% "akka-stream" % AkkaVersion,
       "com.typesafe.akka" %% "akka-http-spray-json" % AkkaHttpVersion,
       "com.typesafe.akka" %% "akka-http-core" % AkkaHttpVersion,

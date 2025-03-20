@@ -45,4 +45,12 @@ object PortefeuilleDAO {
 
   def delete(id: Int): Future[Int] =
     db.run(portefeuilleQuery.filter(_.id === id).delete)
+
+  def update(portefeuille: Portefeuille): Future[Int] =
+    db.run(portefeuilleQuery.filter(_.id === portefeuille.id).update(portefeuille))
+
+  def getValeurTotale(id: Int): Future[BigDecimal] =
+    db.run(portefeuilleQuery.filter(_.id === id).map(_.valeurInitiale).result.headOption)
+      .map(_.getOrElse(BigDecimal(0)))
+
 }
