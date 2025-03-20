@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="12942995-8bd9-4145-b598-38cf85766eee" name="Changes" comment="feat: can now add position from frontend">
+    <list default="true" id="12942995-8bd9-4145-b598-38cf85766eee" name="Changes" comment="feat: can now delete position from frontend">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/Utils/JsonFormats.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Utils/JsonFormats.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/Utils/Routes.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Utils/Routes.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -134,7 +135,7 @@
       <workItem from="1742050055617" duration="239000" />
       <workItem from="1742125596646" duration="3741000" />
       <workItem from="1742131093672" duration="1376000" />
-      <workItem from="1742480678276" duration="7280000" />
+      <workItem from="1742480678276" duration="12342000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1742050976040</created>
@@ -150,7 +151,14 @@
       <option name="project" value="LOCAL" />
       <updated>1742483607334</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="feat: can now delete position from frontend">
+      <created>1742488642220</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1742488642220</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -173,6 +181,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="test" />
     <MESSAGE value="feat: can now add position from frontend" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: can now add position from frontend" />
+    <MESSAGE value="feat: can now delete position from frontend" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: can now delete position from frontend" />
   </component>
 </project>

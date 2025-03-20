@@ -1,6 +1,5 @@
 import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport
 import spray.json._
-
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -23,8 +22,6 @@ trait JsonFormats extends SprayJsonSupport with DefaultJsonProtocol {
   implicit val ActifFormat: RootJsonFormat[Actif] = jsonFormat6(Actif)
   implicit val PortefeuilleFormat: RootJsonFormat[Portefeuille] = jsonFormat5(Portefeuille)
   //implicit val PositionFormat = jsonFormat6(Position)
-  import java.time.LocalDateTime
-  import java.time.format.DateTimeFormatter
 
   implicit val positionFormat: RootJsonFormat[Position] = new RootJsonFormat[Position] {
     val formatter: DateTimeFormatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME
