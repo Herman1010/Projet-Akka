@@ -1,83 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    }
-    .container {
-    padding: 2% 10% 2% 10%;
-    }
-    .flex {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Conteneur principal */
+.container {
+    padding: 3% 10%;
+    background: linear-gradient(to right, #2c3e50, #4ca1af);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Alignement des éléments */
+.flex {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-bottom: 20px;
-    padding-top: 20px;
-    }
-   /* .list-group-item {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 16px;
-    margin-bottom: 16px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease-in-out;
-    }
-    */
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px 0;
+}
 
+/* Cartes */
+.list-group-item {
+    width: 30%;
+    min-width: 280px;
+    margin: 15px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.15); /* Effet Glassmorphism */
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-    .list-group-item {
-        /*display: flex;*/
-        flex-wrap: wrap; /* Permet aux éléments de passer à la ligne si l'espace est insuffisant */
-        justify-content: space-around; /* Répartit l'espace disponible entre les éléments avec un espace égal autour d'eux */
-        width: 30%; /* Largeur de chaque carte, ajustez selon vos besoins */
-        margin: 10px; /* Marge entre les cartes */
-        padding: 20px; /* Espacement interne des cartes */
-        background-color: rgba(255, 255, 255, 1); /* Couleur de fond semi-transparente pour les cartes */
-        border-radius: 10px; /* Coins arrondis pour les cartes */
-        box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.3); /* Ombre légère pour les cartes */
-    }
-    
+/* Effet au survol */
+.list-group-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+}
 
+/* Titres */
+.list-group-item h5 {
+    margin-bottom: 10px;
+    color: #fff;
+    font-weight: 600;
+}
 
+/* Paragraphes */
+.list-group-item p {
+    margin-bottom: 6px;
+    color: rgba(0, 0, 0, 0.9);
+}
 
-    .list-group-item:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    }
-    .list-group-item h5 {
-    margin-bottom: 8px;
-    color: #333;
-    }
-    .list-group-item p {
-        margin-bottom: 4px;
-        color: #666;
-        }
-        .list-group-item p:last-child {
-        margin-bottom: 0;
-        }
-        .btn-primary {
-        display: inline-block;
-        text-decoration: none;
-        padding: 10px 20px;
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        z-index: 2;
-        }
-        .btn-primary:hover {
-        background-color: #0056b3;
-        }
-        .btn-danger {
-        display: inline-block;
-        text-decoration: none;
-        padding: 10px 20px;
-        background-color: #df3a3a;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        margin: 5px;
-        }
-        .btn-danger:hover {
-        background-color: #b32700;
-        }
+/* Boutons */
+.btn-primary, .btn-danger, .buyButton {
+    display: inline-block;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Bouton bleu */
+.btn-primary {
+    background-color: #3498db;
+    color: white;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #217dbb;
+    transform: scale(1.05);
+}
+
+/* Bouton rouge */
+.btn-danger {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    margin-left: 10px;
+}
+.buyButton {
+    background-color: #23b907;
+    color: white;
+    border: none;
+}
+
+.btn-danger:hover {
+    background-color: #c0392b;
+    transform: scale(1.05);
+}
+
+.position-list, .portefeuille-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-evenly;
+}
+
+.position-card {
+    width: calc(20%);
+    box-sizing: border-box;
+}
+
+.actif-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 400px; /* Limite la largeur du formulaire */
+    margin: auto; /* Centre le formulaire */
+}
+
+.input-position{
+    padding: 5px;
+}
