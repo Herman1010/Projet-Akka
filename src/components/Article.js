@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import { Link } from "react-router-dom";
 import PositionCard from "./PositionCard";
 
 const Position = () => {
@@ -71,30 +70,26 @@ const Position = () => {
     };
 
     const addPosition = async () => {
-        // Vérification des champs obligatoires
         if (!newPosition.portefeuille_id || !newPosition.actif_id || !newPosition.quantite || !newPosition.prix_achat) {
             setErrorMessage("Tous les champs doivent être remplis.");
             return;
         }
 
-        // Définition de la date automatiquement (local date/heure)
-        const date = new Date().toISOString().replace("Z", ""); // Supprime "Z" pour obtenir un format compatible
+        const date = new Date().toISOString().replace("Z", "");
 
         const payload = {
             portefeuille_id: newPosition.portefeuille_id,
             actif_id: newPosition.actif_id,
             quantite: newPosition.quantite,
             prix_achat: newPosition.prix_achat,
-            date_achat: date,
+            date_achat: date
         };
-
-        console.log("Payload envoyé :", payload);
 
         try {
             const response = await axios.post('http://localhost:8080/api/position', payload);
             setPositions([...positions, response.data]);
-            setNewPosition({ portefeuille_id: '', actif_id: '', quantite: '', prix_achat: '' }); // Réinitialisation des champs
-            setErrorMessage(""); // Réinitialiser le message d'erreur après succès
+            setNewPosition({ portefeuille_id: '', actif_id: '', quantite: '', prix_achat: '' });
+            setErrorMessage("");
         } catch (error) {
             console.error('Erreur lors de l’ajout', error);
             setErrorMessage("Une erreur est survenue lors de l'ajout de la position.");
@@ -135,11 +130,9 @@ const Position = () => {
             </select>
             <input type="number" name="quantite" placeholder="Quantité" value={newPosition.quantite} onChange={handleInputChange} />
             <input type="number" name="prix_achat" placeholder="Prix Achat" value={newPosition.prix_achat} onChange={handleInputChange} />
-            
-            {/* Suppression de l'input pour la date_achat */}
+
             <button onClick={addPosition}>Acheter</button>
 
-            {/* Affichage des PositionCard avec un conteneur flex */}
             <div className="position-list">
                 {positions.map((position) => (
                     <div className="position-card" key={position.id}>
