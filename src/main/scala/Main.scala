@@ -29,14 +29,14 @@ import PortefeuilleActor._
 import MarketDataActor._
 
 object Main extends App {
-  implicit val system: ActorSystem[PortefeuilleCommand] = ActorSystem(PortefeuilleActor(1, 1, "MonPortefeuille", "EUR"), "PortefeuilleSystem")
+  /*implicit val system: ActorSystem[PortefeuilleCommand] = ActorSystem(PortefeuilleActor(1, 1, "MonPortefeuille", "EUR"), "PortefeuilleSystem")
   import system.executionContext
   implicit val timeout: Timeout = 10.seconds
 
-  val testActifId = 8
-  val testPosition = Position(2, portefeuille_id = 2, actif_id = 8, quantite = 50.0, prix_achat = 100.5, date_achat = Some(LocalDateTime.now()))
+  val testActifId = 6
+  val testPosition = Position(1, portefeuille_id = 1, actif_id = 6, quantite = 50.0, prix_achat = 100.5, date_achat = Some(LocalDateTime.now()))
 
-  // Ajouter une position
+   //Ajouter une position
   val ajoutFuture = system.ask(replyTo => AjouterPosition(testPosition, replyTo))
   println("Ajout Position: " + Await.result(ajoutFuture, timeout.duration))
 
@@ -55,10 +55,10 @@ object Main extends App {
   // Vendre un actif
   val venteFuture = system.ask(replyTo => VendreActif(testActifId, 5.0, replyTo))
   println("Vente Actif: " + Await.result(venteFuture, timeout.duration))
+*/
 
 
 
-/*
   implicit val system: ActorSystem[Nothing] = ActorSystem(Behaviors.empty, "my-system")
   implicit val executionContext: ExecutionContextExecutor = system.executionContext
   implicit val materializer: akka.stream.Materializer = SystemMaterializer(system).materializer
@@ -87,8 +87,9 @@ object Main extends App {
         println("Arrêt du système...")
         system.terminate()
       }
-  */
-  //val bindingFuture: Future[Http.ServerBinding] = Http().newServerAt("localhost", 8080).bind(route)
+ 
+  
+ // val bindingFuture: Future[Http.ServerBinding] = Http().newServerAt("localhost", 8080).bind(route)
 /*  val system: ActorSystem[PortefeuilleCommand] = ActorSystem(PortefeuilleActor(1, 1001, "MonPortefeuille", "EUR"), "TestSystem")
 
     implicit val ec: ExecutionContext = system.executionContext

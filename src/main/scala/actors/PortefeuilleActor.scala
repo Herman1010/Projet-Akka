@@ -64,7 +64,7 @@ object PortefeuilleActor {
             Behaviors.same
 
           case AcheterActif(actifId, quantite, prix, replyTo) =>
-            val nouvellePosition = Position(0, portefeuille.id.get, actifId, quantite, prix.toDouble, Some(LocalDateTime.now()))
+            val nouvellePosition = Position(3, portefeuille.id.get, actifId, quantite, prix.toDouble, Some(LocalDateTime.now()))
             PositionDAO.insert(nouvellePosition).map { _ => replyTo ! SuccessConfirmation }
             Behaviors.same
 
