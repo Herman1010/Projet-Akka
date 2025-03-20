@@ -1,0 +1,75 @@
+/* Auth.css */
+
+/* Style global */
+.auth-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    font-family: "Arial", sans-serif;
+  }
+  
+  /* Boîte du formulaire */
+  .auth-box {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    text-align: center;
+  }
+  
+  /* Titre */
+  .auth-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #333;
+  }
+  
+  /* Champs de formulaire */
+  .auth-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border 0.3s ease-in-out;
+  }
+  
+  .auth-input:focus {
+    border-color: #667eea;
+    outline: none;
+  }
+  
+  /* Bouton */
+  .auth-button {
+    width: 100%;
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+  }
+  
+  .auth-button:hover {
+    background: #764ba2;
+  }
+  
+  .auth-button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+  
+  /* Message d'erreur */
+  .auth-error {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  

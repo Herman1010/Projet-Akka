@@ -1,0 +1,109 @@
+.dashboard-container {
+    font-family: 'Arial', sans-serif;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    color: #fff; /* Texte en blanc pour contraste */
+  }
+  
+  .header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .header h1 {
+    font-size: 2.5rem;
+    color: #fff; /* Titre en blanc */
+  }
+  
+  .header p {
+    font-size: 1.2rem;
+    color: #ccc; /* Texte de description en gris clair */
+  }
+  
+  .summary {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+  }
+  
+  .summary-item {
+    background-color: #1c1c1c; /* Fond sombre mais pas totalement noir */
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Ombre légère pour créer du contraste */
+    padding: 20px;
+    width: 45%;
+    text-align: center;
+  }
+  
+  .summary-item h2 {
+    font-size: 1.5rem;
+    color: #fff; /* Titre des sections en blanc */
+  }
+  
+  .summary-item .value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fff; /* Valeur en blanc */
+  }
+  
+  .summary-item .value.positive {
+    color: #4CAF50; /* Vert pour les gains */
+  }
+  
+  .summary-item .value.negative {
+    color: #F44336; /* Rouge pour les pertes */
+  }
+  
+  .portfolio-details {
+    margin-bottom: 30px;
+  }
+  
+  .portfolio-details h2 {
+    font-size: 1.8rem;
+    color: #fff; /* Titre de la section des détails en blanc */
+    margin-bottom: 15px;
+  }
+  
+  .portfolio-details table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .portfolio-details th, .portfolio-details td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #444; /* Bordure sombre pour bien se détacher */
+  }
+  
+  .portfolio-details th {
+    background-color: #333; /* Fond sombre pour les en-têtes */
+    color: #fff; /* En-têtes en blanc */
+  }
+  
+  .portfolio-details td {
+    color: #bbb; /* Texte des données en gris clair */
+  }
+  
+  .portfolio-details td.positive {
+    color: #4CAF50; /* Vert pour les gains */
+  }
+  
+  .portfolio-details td.negative {
+    color: #F44336; /* Rouge pour les pertes */
+  }
+  
+  .chart-section {
+    background-color: #1c1c1c; /* Fond sombre pour les sections de graphiques */
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Ombre légère pour créer du contraste */
+    padding: 20px;
+  }
+  
+  .chart-section h2 {
+    font-size: 1.5rem;
+    color: #fff; /* Titre des graphiques en blanc */
+    margin-bottom: 20px;
+  }
+  
