@@ -1,7 +1,7 @@
 import akka.actor.typed.{ActorSystem, ActorRef}
 import akka.actor.typed.scaladsl.AskPattern._
 import akka.util.Timeout
-import java.time.LocalDate
+import java.time.LocalDateTime
 
 import scala.concurrent.duration._
 import scala.concurrent.{ExecutionContext, Future}
@@ -29,13 +29,67 @@ import PortefeuilleActor._
 import MarketDataActor._
 
 object Main extends App {
-  //implicit val system: ActorSystem[Nothing] = ActorSystem(Behaviors.empty, "my-system")
-  //implicit val executionContext: ExecutionContextExecutor = system.executionContext
-  //implicit val materializer: akka.stream.Materializer = SystemMaterializer(system).materializer
-  // Démarrage du serveur HTTP
-  val route = Routes.route
+  implicit val system: ActorSystem[PortefeuilleCommand] = ActorSystem(PortefeuilleActor(1, 1, "MonPortefeuille", "EUR"), "PortefeuilleSystem")
+  import system.executionContext
+  implicit val timeout: Timeout = 10.seconds
+
+  val testActifId = 8
+  val testPosition = Position(2, portefeuille_id = 2, actif_id = 8, quantite = 50.0, prix_achat = 100.5, date_achat = Some(LocalDateTime.now()))
+
+  // Ajouter une position
+  val ajoutFuture = system.ask(replyTo => AjouterPosition(testPosition, replyTo))
+  println("Ajout Position: " + Await.result(ajoutFuture, timeout.duration))
+
+  // Acheter un actif
+  val achatFuture = system.ask(replyTo => AcheterActif(testActifId, 5.0, 120.0, replyTo))
+  println("Achat Actif: " + Await.result(achatFuture, timeout.duration))
+
+  // Obtenir la valeur du portefeuille
+  val valeurFuture = system.ask(replyTo => ObtenirValeur(replyTo))
+  println("Valeur Portefeuille: " + Await.result(valeurFuture, timeout.duration))
+
+  // Mettre à jour le prix d'un actif
+  system ! MiseAJourPrix(testActifId, 130.0)
+  println("Mise à jour prix envoyée")
+
+  // Vendre un actif
+  val venteFuture = system.ask(replyTo => VendreActif(testActifId, 5.0, replyTo))
+  println("Vente Actif: " + Await.result(venteFuture, timeout.duration))
+
+
+
+/*
+  implicit val system: ActorSystem[Nothing] = ActorSystem(Behaviors.empty, "my-system")
+  implicit val executionContext: ExecutionContextExecutor = system.executionContext
+  implicit val materializer: akka.stream.Materializer = SystemMaterializer(system).materializer
+
+    //Démarrage du serveur HTTP
+    val route = Routes.route
+    val bindingFuture: Future[Http.ServerBinding] = Http().newServerAt("localhost", 8080).bind(route)
+
+    println("Serveur démarré sur http://localhost:8080")
+    println("Appuyez sur Entrée pour arrêter...")
+
+    // Tester la récupération des prix
+    val futurePrix: Future[BigDecimal] = ApiUtils.fetchStockData("AAPL")
+
+    futurePrix.onComplete {
+      case Success(prix) => println(s"Prix récupéré : $prix")
+      case Failure(ex)   => println(s"Erreur lors de la récupération du prix : ${ex.getMessage}")
+    }
+
+    // Attendre l'entrée de l'utilisateur pour arrêter le serveur proprement
+    StdIn.readLine()
+
+    bindingFuture
+      .flatMap(_.unbind()) // Libère le port
+      .onComplete { _ =>
+        println("Arrêt du système...")
+        system.terminate()
+      }
+  */
   //val bindingFuture: Future[Http.ServerBinding] = Http().newServerAt("localhost", 8080).bind(route)
-  val system: ActorSystem[PortefeuilleCommand] = ActorSystem(PortefeuilleActor(1, 1001, "MonPortefeuille", "EUR"), "TestSystem")
+/*  val system: ActorSystem[PortefeuilleCommand] = ActorSystem(PortefeuilleActor(1, 1001, "MonPortefeuille", "EUR"), "TestSystem")
 
     implicit val ec: ExecutionContext = system.executionContext
 
@@ -58,15 +112,9 @@ object Main extends App {
     system.scheduler.scheduleOnce(3.seconds, new Runnable {
       override def run(): Unit = system.terminate()
     })
-  
-/*
-  val futurePrix: Future[BigDecimal] = ApiUtils.fetchStockData("AAPL")
-
-    futurePrix.onComplete {
-      case Success(prix) => println(s"Prix récupéré : $prix")
-      case Failure(ex)   => println(s"Erreur lors de la récupération du prix : ${ex.getMessage}")
-    }
 */
+
+
 /*
   implicit val timeout: Timeout = 3.seconds
   implicit val ec: ExecutionContext = ExecutionContext.global
@@ -101,8 +149,8 @@ object Main extends App {
     
   }
 */
-    println("Appuyez sur Entrée pour arrêter...")
-    StdIn.readLine() // Attend que l'utilisateur appuie sur Entrée
+    //println("Appuyez sur Entrée pour arrêter...")
+    //StdIn.readLine() // Attend que l'utilisateur appuie sur Entrée
 
     //bindingFuture.flatMap(_.unbind()).onComplete(_ => system.terminate())
 }

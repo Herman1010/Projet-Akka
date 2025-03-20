@@ -1,21 +1,22 @@
 import slick.jdbc.PostgresProfile.api._
-import java.time.LocalDate
-
+import java.time.LocalDateTime
+import slick.lifted.ProvenShape
 import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
 
 
+case class Position(id: Int, portefeuille_id: Int, actif_id: Int, quantite: Double, prix_achat: Double, date_achat: Option[LocalDateTime] = Some(LocalDateTime.now()))
 
-
-case class Position(id: Int, portefeuille_id: Int, actif_id: Int,quantite: Double ,prix_achat:Double, date_achat: LocalDate)
   class PositionTable(tag: Tag) extends Table[Position](tag, "position") {
   def id = column[Int]("id", O.PrimaryKey, O.AutoInc)
   def portefeuille_id = column[Int]("portefeuille_id")
   def actif_id = column[Int]("actif_id")
   def quantite = column[Double]("quantite")
   def prix_achat = column[Double]("prix_achat")
-  def date_achat =column[LocalDate]("date_achat")
-  def * = (id, portefeuille_id, actif_id, quantite, prix_achat, date_achat) <> (Position.tupled, Position.unapply)
+  def date_achat = column[LocalDateTime]("date_creation",O.Default(LocalDateTime.now()))
+  
+  def * : ProvenShape[Position] = (id, portefeuille_id, actif_id, quantite, prix_achat, date_achat.?) <> (Position.tupled, Position.unapply)
+
 }
 
 
@@ -35,7 +36,7 @@ object PositionDAO {
     db.run(query)
   }
 
-  
+
 
   def getByActifId(actif_id: Int): Future[Seq[Position]] = {
     val query = positions.filter(_.actif_id === actif_id).result
@@ -56,10 +57,11 @@ object PositionDAO {
 
   
  
-  def update(id: Int, quantite: Double, prix_achat: Double, date_achat: LocalDate): Future[Int] = {
+  def update(id: Int, quantite: Double, prix_achat: Double): Future[Int] = {
     val updateAction = positions.filter(_.id === id)
-      .map(p => (p.quantite, p.prix_achat, p.date_achat))
-      .update((quantite, prix_achat, date_achat))
+      .map(p => (p.quantite, p.prix_achat))
+      .update((quantite, prix_achat))
     db.run(updateAction) 
   }
+
 }
