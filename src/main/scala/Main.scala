@@ -1,3 +1,11 @@
+import akka.actor.typed.{ActorSystem, ActorRef}
+import akka.actor.typed.scaladsl.AskPattern._
+import akka.util.Timeout
+import java.time.LocalDate
+
+import scala.concurrent.duration._
+import scala.concurrent.{ExecutionContext, Future}
+
 import akka.actor.typed.ActorSystem
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.server.Directives._
@@ -6,7 +14,6 @@ import akka.stream.SystemMaterializer
 
 import akka.actor.typed.Behavior
 import akka.actor.typed.scaladsl.Behaviors
-import akka.actor.typed.ActorSystem
 
 import scala.concurrent.Await
 import scala.concurrent.duration.Duration
@@ -14,30 +21,88 @@ import scala.concurrent.duration.Duration
 import scala.io.StdIn
 import scala.concurrent.ExecutionContextExecutor
 import scala.concurrent.Future
+import scala.util.{Failure, Success}
+import scala.concurrent.ExecutionContext
+import scala.concurrent.duration._
 
-
-import java.time.LocalDate
+import PortefeuilleActor._
+import MarketDataActor._
 
 object Main extends App {
-  implicit val system: ActorSystem[Nothing] = ActorSystem(Behaviors.empty, "my-system")
-  implicit val executionContext: ExecutionContextExecutor = system.executionContext
-  implicit val materializer = SystemMaterializer(system).materializer
+  //implicit val system: ActorSystem[Nothing] = ActorSystem(Behaviors.empty, "my-system")
+  //implicit val executionContext: ExecutionContextExecutor = system.executionContext
+  //implicit val materializer: akka.stream.Materializer = SystemMaterializer(system).materializer
+  // Démarrage du serveur HTTP
+  val route = Routes.route
+  //val bindingFuture: Future[Http.ServerBinding] = Http().newServerAt("localhost", 8080).bind(route)
+  val system: ActorSystem[PortefeuilleCommand] = ActorSystem(PortefeuilleActor(1, 1001, "MonPortefeuille", "EUR"), "TestSystem")
 
- val emailTest = "herman@example5.com"
+    implicit val ec: ExecutionContext = system.executionContext
 
-  // Appel de la fonction getByEmail
-  val resultFuture = UserDAO.getByEmail(emailTest)
+    // Création des acteurs
+    val portefeuilleActor: ActorRef[PortefeuilleCommand] = system
+    val marketDataActor: ActorRef[MarketDataEvent] = system.systemActorOf(MarketDataActor(), "MarketDataActor")
 
-  // Attente du résultat (pour un test simple)
-  val result = Await.result(resultFuture, Duration.Inf)
+    // Test d'ajout de position
+    val testPosition = Position(0, 1, 123, 10, 100.0, java.time.LocalDate.now())
+    portefeuilleActor ! AjouterPosition(testPosition, system.ignoreRef)
 
-  // Affichage du résultat
-  result match {
-    case Nil => println(s"Aucun utilisateur trouvé avec l'email: $emailTest")
-    case users => users.foreach(user => println(s"Utilisateur trouvé: ${user.nom}, Email: ${user.email}"))
+    // Simulation de mise à jour des prix
+    marketDataActor ! PrixActifMisAJour(123, 105.0)
+    portefeuilleActor ! MiseAJourPrix(123, 105.0)
+
+    // Récupération de la valeur totale du portefeuille
+    portefeuilleActor ! ObtenirValeur(system.ignoreRef)
+
+    // Correction : Utilisation d'un Runnable pour l'arrêt propre du système
+    system.scheduler.scheduleOnce(3.seconds, new Runnable {
+      override def run(): Unit = system.terminate()
+    })
+  
+/*
+  val futurePrix: Future[BigDecimal] = ApiUtils.fetchStockData("AAPL")
+
+    futurePrix.onComplete {
+      case Success(prix) => println(s"Prix récupéré : $prix")
+      case Failure(ex)   => println(s"Erreur lors de la récupération du prix : ${ex.getMessage}")
+    }
+*/
+/*
+  implicit val timeout: Timeout = 3.seconds
+  implicit val ec: ExecutionContext = ExecutionContext.global
+
+  def main(args: Array[String]): Unit = {
+    val system: ActorSystem[PortefeuilleCommand] =
+      ActorSystem(PortefeuilleActor(1, 1001, "MonPortefeuille", "EUR"), "PortefeuilleSystem")
+
+    // Fonction pour envoyer des messages et récupérer la réponse
+    def sendCommand[T](command: ActorRef[T] => PortefeuilleCommand): T = {
+      val future: Future[T] = system.ask[T](command)(timeout, system.scheduler)
+      Await.result(future, timeout.duration)
+    }
+
+    // Ajouter une position
+    val position = Position(1, 2, 3, 150.00, 1500, LocalDate.of(2024,12,12)) // Exemple de position Apple à 150€/action
+    val ajoutResult = sendCommand[Confirmation](replyTo => AjouterPosition(position, replyTo))
+    println(s"Ajout de position: $ajoutResult")
+
+    // Obtenir la valeur totale du portefeuille
+    val valeurPortefeuille = sendCommand[BigDecimal](replyTo => ObtenirValeur(replyTo))
+    println(s"Valeur totale du portefeuille: $valeurPortefeuille EUR")
+
+    // Supprimer une position
+    val suppressionResult = sendCommand[Confirmation](replyTo => SupprimerPosition(1, replyTo))
+    println(s"Suppression de position: $suppressionResult")
+
+    // Vérifier la valeur après suppression
+    val nouvelleValeurPortefeuille = sendCommand[BigDecimal](replyTo => ObtenirValeur(replyTo))
+    println(s"Nouvelle valeur du portefeuille: $nouvelleValeurPortefeuille EUR")
+
+    
   }
+*/
+    println("Appuyez sur Entrée pour arrêter...")
+    StdIn.readLine() // Attend que l'utilisateur appuie sur Entrée
 
-  // Arrêter l'application proprement
-  System.exit(0)
+    //bindingFuture.flatMap(_.unbind()).onComplete(_ => system.terminate())
 }
-

@@ -11,7 +11,7 @@ lazy val root = (project in file("."))
     name := "Akka1",
     version := "0.1",
     libraryDependencies ++= Seq(
-      "com.typesafe.akka" %% "akka-actor-typed" % AkkaVersion,
+            "com.typesafe.akka" %% "akka-actor-typed" % AkkaVersion,
       "com.typesafe.akka" %% "akka-stream" % AkkaVersion,
       "com.typesafe.akka" %% "akka-http-spray-json" % AkkaHttpVersion,
       "com.typesafe.akka" %% "akka-http-core" % AkkaHttpVersion,
@@ -22,6 +22,12 @@ lazy val root = (project in file("."))
       "org.slf4j" % "slf4j-simple" % "1.7.36", // Correction de `%%` en `%`
       "com.typesafe.slick" %% "slick" % "3.4.1",
       "com.typesafe.slick" %% "slick-hikaricp" % "3.4.1",
-      "org.postgresql" % "postgresql" % "42.5.0"
+      "org.postgresql" % "postgresql" % "42.5.0",
+      "com.softwaremill.sttp.client3" %% "core" % "3.8.3",
+      "com.softwaremill.sttp.client3" %% "circe" % "3.8.3",
+      "io.circe" %% "circe-parser" % "0.14.1",
+      "io.circe" %% "circe-core" % "0.14.1",
+      "io.circe" %% "circe-generic" % "0.14.1",
+      "io.circe" %% "circe-parser" % "0.14.1"
     )
   )
