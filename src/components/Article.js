@@ -6,6 +6,8 @@ import PositionCard from "./PositionCard";
 const Position = () => {
     const [positions, setPositions] = useState([]);
     const [deleteMsg, setDeleteMsg] = useState(false);
+    const [portefeuilles, setPortefeuilles] = useState([]);
+    const [actifs, setActifs] = useState([]);
     const [newPosition, setNewPosition] = useState({
         portefeuille_id: '',
         actif_id: '',
@@ -13,6 +15,7 @@ const Position = () => {
         prix_achat: '',
         date_achat: ''
     });
+    const [errorMessage, setErrorMessage] = useState(""); // État pour le message d'erreur
 
     useEffect(() => {
         const fetchData = async () => {
@@ -24,6 +27,30 @@ const Position = () => {
             }
         };
         fetchData();
+    }, []);
+
+    useEffect(() => {
+        const fetchPortefeuilles = async () => {
+            try {
+                const response = await axios.get('http://localhost:8080/api/portefeuilles');
+                setPortefeuilles(response.data);
+            } catch (error) {
+                console.error('Erreur lors de la récupération des portefeuilles:', error);
+            }
+        };
+        fetchPortefeuilles();
+    }, []);
+
+    useEffect(() => {
+        const fetchActifs = async () => {
+            try {
+                const response = await axios.get('http://localhost:8080/api/actifs');
+                setActifs(response.data);
+            } catch (error) {
+                console.error('Erreur lors de la récupération des actifs:', error);
+            }
+        };
+        fetchActifs();
     }, []);
 
     const deletePosition = async (id) => {
@@ -44,15 +71,19 @@ const Position = () => {
         }));
     };
 
-
     const addPosition = async () => {
-        const date = new Date(newPosition.date_achat).toISOString().replace("Z", ""); // Supprime "Z"
+        if (!newPosition.portefeuille_id || !newPosition.actif_id || !newPosition.quantite || !newPosition.prix_achat || !newPosition.date_achat) {
+            setErrorMessage("Tous les champs doivent être remplis.");
+            return;
+        }
+
+        const date = new Date(newPosition.date_achat).toISOString().replace("Z", "");
 
         const payload = {
-            portefeuille_id: newPosition.portefeuille_id || 0,
-            actif_id: newPosition.actif_id || 0,
-            quantite: newPosition.quantite || 0,
-            prix_achat: newPosition.prix_achat || 0,
+            portefeuille_id: newPosition.portefeuille_id,
+            actif_id: newPosition.actif_id,
+            quantite: newPosition.quantite,
+            prix_achat: newPosition.prix_achat,
             date_achat: date
         };
 
@@ -62,25 +93,49 @@ const Position = () => {
             const response = await axios.post('http://localhost:8080/api/position', payload);
             setPositions([...positions, response.data]);
             setNewPosition({ portefeuille_id: '', actif_id: '', quantite: '', prix_achat: '', date_achat: '' });
+            setErrorMessage(""); // Réinitialiser le message d'erreur après succès
         } catch (error) {
             console.error('Erreur lors de l’ajout', error);
+            setErrorMessage("Une erreur est survenue lors de l'ajout de la position.");
         }
     };
-
-
 
     return (
         <div>
             <h1>Positions</h1>
-            <Link to='/position/create'>Créer une Position</Link>
             {deleteMsg && <div>La position a été supprimée avec succès</div>}
 
-            <input type="number" name="portefeuille_id" placeholder="Portefeuille ID" value={newPosition.portefeuille_id} onChange={handleInputChange} />
-            <input type="number" name="actif_id" placeholder="Actif ID" value={newPosition.actif_id} onChange={handleInputChange} />
+            {errorMessage && <div style={{ color: 'red', marginBottom: '10px' }}>{errorMessage}</div>}
+
+            <select
+                name="portefeuille_id"
+                value={newPosition.portefeuille_id}
+                onChange={handleInputChange}
+            >
+                <option value="">Sélectionnez un Portefeuille</option>
+                {portefeuilles.map((portefeuille) => (
+                    <option key={portefeuille.id} value={portefeuille.id}>
+                        {portefeuille.nom}
+                    </option>
+                ))}
+            </select>
+
+            <select
+                name="actif_id"
+                value={newPosition.actif_id}
+                onChange={handleInputChange}
+            >
+                <option value="">Sélectionnez un Actif</option>
+                {actifs.map((actif) => (
+                    <option key={actif.id} value={actif.id}>
+                        {actif.nom}
+                    </option>
+                ))}
+            </select>
             <input type="number" name="quantite" placeholder="Quantité" value={newPosition.quantite} onChange={handleInputChange} />
             <input type="number" name="prix_achat" placeholder="Prix Achat" value={newPosition.prix_achat} onChange={handleInputChange} />
             <input type="date" name="date_achat" value={newPosition.date_achat} onChange={handleInputChange} />
-            <button onClick={addPosition}>Ajouter</button>
+            <button onClick={addPosition}>Acheter</button>
 
             <div>
                 {positions.map((position) => (
