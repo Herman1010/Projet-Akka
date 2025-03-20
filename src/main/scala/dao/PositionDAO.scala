@@ -1,13 +1,10 @@
+
 import slick.jdbc.PostgresProfile.api._
 import java.time.LocalDateTime
 import slick.lifted.ProvenShape
-import java.time.LocalDateTime
-
 import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
 
-
-case class Position(id: Int, portefeuille_id: Int, actif_id: Int, quantite: Double, prix_achat: Double, date_achat: Option[LocalDateTime] = Some(LocalDateTime.now()))
 
 case class Position(id: Option[Int], portefeuille_id: Int, actif_id: Int,quantite: Double ,prix_achat:Double, date_achat: LocalDateTime)
   class PositionTable(tag: Tag) extends Table[Position](tag, "position") {
@@ -15,8 +12,9 @@ case class Position(id: Option[Int], portefeuille_id: Int, actif_id: Int,quantit
   def portefeuille_id = column[Int]("portefeuille_id")
   def actif_id = column[Int]("actif_id")
   def quantite = column[Double]("quantite")
-  def prix_achat = column[Double]("prix_achat")  
-  def date_achat =column[LocalDateTime]("date_achat")
+  def prix_achat = column[Double]("prix_achat")
+  def date_achat = column[LocalDateTime]("date_creation",O.Default(LocalDateTime.now()))
+  
   def * = (id.?, portefeuille_id, actif_id, quantite, prix_achat, date_achat) <> (Position.tupled, Position.unapply)
 }
 
@@ -49,20 +47,20 @@ object PositionDAO {
   }
 
 
-  def getById(positionId: Int): Future[Option[Position]] = {
+  def getById(positionId: Option[Int]): Future[Option[Position]] = {
     val query = positions.filter(_.id === positionId).result.headOption
     db.run(query)
   }
 
 
-  def delete(positionId: Int): Future[Int] = {
+  def delete(positionId: Option[Int]): Future[Int] = {
     val deleteAction = positions.filter(_.id === positionId).delete
     db.run(deleteAction)
   }
 
   
  
-  def update(id: Int, quantite: Double, prix_achat: Double, date_achat: LocalDateTime): Future[Int] = {
+  def update(id: Option[Int], quantite: Double, prix_achat: Double, date_achat: LocalDateTime): Future[Int] = {
     val updateAction = positions.filter(_.id === id)
       .map(p => (p.quantite, p.prix_achat))
       .update((quantite, prix_achat))

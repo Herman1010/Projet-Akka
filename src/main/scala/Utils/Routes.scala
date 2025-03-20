@@ -96,7 +96,7 @@ object Routes extends JsonFormats {
           } ~
           delete {
             path(IntNumber) { id =>
-              onSuccess(PositionDAO.delete(id)) { result =>
+              onSuccess(PositionDAO.delete(Some(id))) { result =>
                 complete(StatusCodes.OK, s"Position $id supprimée")
               }
             }

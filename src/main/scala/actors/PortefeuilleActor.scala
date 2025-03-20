@@ -59,12 +59,12 @@ object PortefeuilleActor {
 
           case MiseAJourPrix(actifId, nouveauPrix) =>
             PositionDAO.getByActifId(actifId).map(_.foreach { position =>
-              PositionDAO.update(position.id, position.quantite, nouveauPrix.toDouble)
+              PositionDAO.update(position.id, position.quantite, nouveauPrix.toDouble, LocalDateTime.now())
             })
             Behaviors.same
 
           case AcheterActif(actifId, quantite, prix, replyTo) =>
-            val nouvellePosition = Position(3, portefeuille.id.get, actifId, quantite, prix.toDouble, Some(LocalDateTime.now()))
+            val nouvellePosition = Position(None, portefeuille.id.get, actifId, quantite, prix.toDouble, LocalDateTime.now())
             PositionDAO.insert(nouvellePosition).map { _ => replyTo ! SuccessConfirmation }
             Behaviors.same
 
@@ -73,7 +73,7 @@ object PortefeuilleActor {
               case Some(position) if position.quantite >= quantite =>
                 val nouvelleQuantite = position.quantite - quantite
                 val updateFuture = if (nouvelleQuantite > 0) {
-                  PositionDAO.update(position.id, nouvelleQuantite, position.prix_achat)
+                  PositionDAO.update(position.id, nouvelleQuantite, position.prix_achat, LocalDateTime.now())
                 } else {
                   PositionDAO.delete(position.id)
                 }
